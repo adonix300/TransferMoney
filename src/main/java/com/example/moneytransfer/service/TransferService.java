@@ -2,9 +2,9 @@ package com.example.moneytransfer.service;
 
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.logger.Logger;
+import com.example.moneytransfer.model.ConfirmOperationBody;
 import com.example.moneytransfer.model.TransferBody;
 import com.example.moneytransfer.repository.TransferRepository;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +14,27 @@ public class TransferService {
     private TransferRepository transferRepository;
     @Autowired
     private Logger logger;
-    @Getter
-    private String operationId;
 
-    public void addTransfer(TransferBody transferBody) {
-        validationBody(transferBody);
-        transferRepository.addTransfer(transferBody);
-        operationId = String.valueOf(transferRepository.getId());
+    public String addTransfer(TransferBody transferBody) {
+        validationTransferBody(transferBody);
+        return transferRepository.addTransfer(transferBody);
     }
 
-    public void validationBody(TransferBody transferBody) {
+    public String confirmOperation(ConfirmOperationBody body) {
+        validationConfirmOperation(body);
+        try {
+            if (body.getCode().equals("0000")) {
+                return transferRepository.confirmOperation(body.getOperationId());
+            } else {
+                loggerAndValidation("Wrong code: " + body.getCode());
+            }
+        } catch (ValidationException e) {
+            transferRepository.confirmOperationFailed(body.getOperationId());
+        }
+        return null;
+    }
+
+    public void validationTransferBody(TransferBody transferBody) {
         if (transferBody.getCardFromCVV() == null || transferBody.getCardFromCVV().length() != 3) {
             loggerAndValidation("Invalid CVV: " + transferBody.getCardFromCVV());
         } else if (transferBody.getCardFromNumber() == null || transferBody.getCardFromNumber().length() != 16) {
@@ -37,9 +48,14 @@ public class TransferService {
         }
     }
 
+    public void validationConfirmOperation(ConfirmOperationBody body) {
+        if (body.getCode() == null || body.getCode().length() != 4) {
+            loggerAndValidation("Invalid Code: " + body.getCode());
+        }
+    }
+
     private void loggerAndValidation(String msg) {
         logger.log(msg);
         throw new ValidationException(msg);
     }
-
 }

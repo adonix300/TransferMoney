@@ -1,5 +1,6 @@
 package com.example.moneytransfer.logger;
 
+import com.example.moneytransfer.api.LoggerApi;
 import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
@@ -9,7 +10,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 @Component
-public class Logger {
+public class Logger implements LoggerApi {
     private final FileWriter writer;
     private Logger(){
         try {
@@ -18,7 +19,6 @@ public class Logger {
             throw new RuntimeException(e);
         }
     }
-
     public synchronized void log(String msg) {
         try {
             writer.append("[")
@@ -33,5 +33,4 @@ public class Logger {
             System.err.println("Log Error " + msg);
         }
     }
-
 }
