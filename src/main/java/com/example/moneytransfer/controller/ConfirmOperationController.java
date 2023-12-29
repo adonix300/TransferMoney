@@ -2,9 +2,11 @@ package com.example.moneytransfer.controller;
 
 import com.example.moneytransfer.api.ConfirmOperationApi;
 import com.example.moneytransfer.exception.ValidationException;
+import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.model.ConfirmOperationBody;
 import com.example.moneytransfer.model.ConfirmOperationResponse;
 import com.example.moneytransfer.model.ErrorResponse;
+import com.example.moneytransfer.model.TransferBody;
 import com.example.moneytransfer.service.ConfirmOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfirmOperationController implements ConfirmOperationApi {
     @Autowired
     ConfirmOperationService confirmOperationService;
+    @Autowired
+    Logger logger;
 
     @Override
     public ResponseEntity<?> confirmOperationPost(ConfirmOperationBody body) {

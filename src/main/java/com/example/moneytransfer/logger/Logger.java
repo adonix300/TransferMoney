@@ -1,15 +1,16 @@
 package com.example.moneytransfer.logger;
 
+import org.springframework.stereotype.Component;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-
+@Component
 public class Logger {
-    private static Logger logger;
-    private FileWriter writer;
+    private final FileWriter writer;
     private Logger(){
         try {
             writer = new FileWriter("log.txt",true);
@@ -18,14 +19,7 @@ public class Logger {
         }
     }
 
-    public static Logger getInstance() {
-        if (logger == null) {
-            logger = new Logger();
-        }
-        return logger;
-    }
-
-    public void log(String msg) {
+    public synchronized void log(String msg) {
         try {
             writer.append("[")
                     .append(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)))

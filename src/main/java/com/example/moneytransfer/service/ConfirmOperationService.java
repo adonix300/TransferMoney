@@ -1,6 +1,7 @@
 package com.example.moneytransfer.service;
 
 import com.example.moneytransfer.exception.ValidationException;
+import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.model.ConfirmOperationBody;
 import com.example.moneytransfer.model.ConfirmOperationResponse;
 import com.example.moneytransfer.repository.ConfirmOperationRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class ConfirmOperationService {
     @Autowired
     ConfirmOperationRepository confirmOperationRepository;
+    @Autowired
+    Logger logger;
     @Getter
     String operationId;
 
@@ -21,15 +24,16 @@ public class ConfirmOperationService {
         validationConfirmOperation(body);
         confirmOperationRepository.addConfirmOperation(body);
         operationId = String.valueOf(confirmOperationRepository.getId());
+        logger.log("All good");
     }
 
     public void validationConfirmOperation(ConfirmOperationBody body) {
         if (body.getCode() == null || body.getCode().length() != 4) {
-            //TODO logger
+            logger.log("Invalid code");
             throw new ValidationException("Invalid Code");
         }
         if (!body.getCode().equals("0000")) {
-            //TODO logger
+            logger.log("Wrong code");
             throw new ValidationException("Wrong Code");
         }
     }
