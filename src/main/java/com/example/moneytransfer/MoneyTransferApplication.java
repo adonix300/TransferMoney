@@ -12,15 +12,15 @@ public class MoneyTransferApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MoneyTransferApplication.class, args);
-        TransferRepository transferRepository = new TransferRepository();
-        while (true) {
-            transferRepository.printMap();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        TransferRepository transferRepository = new TransferRepository();
+//        while (true) {
+//            transferRepository.printMap();
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
     }
     @Bean
     public WebMvcConfigurer corsConfigurer() {
