@@ -4,6 +4,8 @@ import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.model.Transfer;
 import com.example.moneytransfer.model.TransferBody;
 import com.example.moneytransfer.model.TransferStatus;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,8 +16,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class TransferRepository {
     @Autowired
+    @Setter
     private Logger logger;
 
+    @Getter
     private static final ConcurrentMap<String, Transfer> transferMap = new ConcurrentHashMap<>();
     private AtomicInteger id = new AtomicInteger(0);
 
