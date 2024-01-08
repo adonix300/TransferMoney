@@ -98,7 +98,7 @@ class TransferServiceTest {
 
     @Test
     void confirmOperation_ValidCode_ShouldCallRepository() {
-        ConfirmOperationBody confirmOperationBody = new ConfirmOperationBody(anyString(), "0000"); //valid code
+        ConfirmOperationBody confirmOperationBody = new ConfirmOperationBody("1", "0000"); //valid code
 
         transferService.confirmOperation(confirmOperationBody);
 
@@ -113,10 +113,5 @@ class TransferServiceTest {
         assertNull(transferService.confirmOperation(confirmOperationBody));
         verify(logger, times(1)).log(anyString());
         verify(transferRepository, times(1)).confirmOperationFailed(anyString());
-    }
-
-
-    @Test
-    void validationConfirmOperation() {
     }
 }
