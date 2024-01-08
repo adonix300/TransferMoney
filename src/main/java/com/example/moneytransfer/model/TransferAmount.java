@@ -18,4 +18,8 @@ public class TransferAmount {
     @JsonProperty("currency")
     private String currency = null;
 
+    @Override
+    public String toString() {
+        return (value / 100) + " " + currency;
+    }
 }

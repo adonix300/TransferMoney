@@ -1,6 +1,7 @@
 package com.example.moneytransfer.api;
 
 
+import com.example.moneytransfer.model.ConfirmOperationBody;
 import com.example.moneytransfer.model.TransferBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,5 +17,11 @@ public interface TransferApi {
             consumes = {"application/json"},
             method = RequestMethod.POST)
     ResponseEntity<?> transferPost(@RequestBody TransferBody body);
+
+    @RequestMapping(value = "/confirmOperation",
+            produces = {"application/json"},
+            consumes = {"application/json"},
+            method = RequestMethod.POST)
+    ResponseEntity<?> confirmOperationPost(@RequestBody ConfirmOperationBody body);
 }
 
