@@ -5,19 +5,21 @@ import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.model.ConfirmOperationBody;
 import com.example.moneytransfer.model.ConfirmOperationResponse;
 import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.service.ConfirmOperationService;
 import com.example.moneytransfer.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class TransferController implements TransferControllerApi {
     private final TransferService transferService;
+    private final ConfirmOperationService confirmOperationService;
 
     @Autowired
-    public TransferController(TransferService transferService) {
+    public TransferController(TransferService transferService, ConfirmOperationService confirmOperationService) {
         this.transferService = transferService;
+        this.confirmOperationService = confirmOperationService;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class TransferController implements TransferControllerApi {
     @Override
     public ResponseEntity<ConfirmOperationResponse> confirmOperationPost(ConfirmOperationBody body) {
         try {
-            String id = transferService.confirmOperation(body);
+            String id = confirmOperationService.confirmOperation(body);
             return ResponseEntity
                     .ok(ConfirmOperationResponse.builder().operationId(id).build());
         } catch (ValidationException e) {
