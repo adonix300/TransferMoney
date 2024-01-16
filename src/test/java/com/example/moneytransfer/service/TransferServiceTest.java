@@ -1,5 +1,7 @@
 package com.example.moneytransfer.service;
 
+import com.example.moneytransfer.api.TransferRepositoryApi;
+import com.example.moneytransfer.api.TransferServiceApi;
 import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.records.TransferAmount;
 import com.example.moneytransfer.records.TransferBody;
