@@ -1,0 +1,18 @@
+2024-01-16T16:20:22.446+05:00  INFO 13140 --- [main] c.e.m.MoneyTransferApplication           : Starting MoneyTransferApplication using Java 17.0.6 with PID 13140 (G:\Программирование\java\projects\money-transfer\target\classes started by megap in G:\Программирование\java\projects\money-transfer)
+2024-01-16T16:20:22.448+05:00  INFO 13140 --- [main] c.e.m.MoneyTransferApplication           : No active profile set, falling back to 1 default profile: "default"
+2024-01-16T16:20:23.016+05:00  INFO 13140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 5500 (http)
+2024-01-16T16:20:23.023+05:00  INFO 13140 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-16T16:20:23.024+05:00  INFO 13140 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-16T16:20:23.059+05:00  INFO 13140 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-16T16:20:23.059+05:00  INFO 13140 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 573 ms
+2024-01-16T16:20:23.304+05:00  INFO 13140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 5500 (http) with context path ''
+2024-01-16T16:20:23.309+05:00  INFO 13140 --- [main] c.e.m.MoneyTransferApplication           : Started MoneyTransferApplication in 1.161 seconds (process running for 1.536)
+2024-01-16T16:20:39.560+05:00  INFO 13140 --- [http-nio-5500-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-16T16:20:39.560+05:00  INFO 13140 --- [http-nio-5500-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-16T16:20:39.561+05:00  INFO 13140 --- [http-nio-5500-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-01-16T16:20:39.633+05:00  INFO 13140 --- [http-nio-5500-exec-1] c.e.m.repository.TransferRepository      : ID 1: cardFrom: Number: 2131232132131231, ValidTill: 12/44, CVV: 123. cardTo: Number: 1231231231231232. Amount: 12321 RUR. Status: PROCESSING.
+2024-01-16T16:20:39.654+05:00  INFO 13140 --- [http-nio-5500-exec-2] c.e.m.repository.TransferRepository      : ID 1: New status: SUCCESSFUL
+2024-01-16T16:21:21.469+05:00  INFO 13140 --- [http-nio-5500-exec-4] c.e.m.repository.TransferRepository      : ID 2: cardFrom: Number: 2133123123131231, ValidTill: 12/44, CVV: 123. cardTo: Number: 1231231231231231. Amount: 12312 RUR. Status: PROCESSING.
+2024-01-16T16:21:21.474+05:00  INFO 13140 --- [http-nio-5500-exec-5] c.e.m.repository.TransferRepository      : ID 2: New status: SUCCESSFUL
+2024-01-16T16:21:32.795+05:00  INFO 13140 --- [http-nio-5500-exec-7] c.e.m.repository.TransferRepository      : ID 3: cardFrom: Number: 1231231231231231, ValidTill: 12/44, CVV: 123. cardTo: Number: 1231232131231231. Amount: 1231 RUR. Status: PROCESSING.
+2024-01-16T16:21:32.798+05:00  INFO 13140 --- [http-nio-5500-exec-8] c.e.m.repository.TransferRepository      : ID 3: New status: SUCCESSFUL

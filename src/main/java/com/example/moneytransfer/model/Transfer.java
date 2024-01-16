@@ -1,5 +1,6 @@
 package com.example.moneytransfer.model;
 
+import com.example.moneytransfer.records.TransferBody;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
