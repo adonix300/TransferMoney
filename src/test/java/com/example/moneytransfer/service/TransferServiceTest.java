@@ -1,8 +1,5 @@
 package com.example.moneytransfer.service;
 
-import com.example.moneytransfer.api.TransferRepositoryApi;
-import com.example.moneytransfer.api.TransferServiceApi;
-import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.records.TransferAmount;
 import com.example.moneytransfer.records.TransferBody;
 import com.example.moneytransfer.repository.TransferRepository;
@@ -12,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -20,8 +16,6 @@ class TransferServiceTest {
 
     @Mock
     TransferRepository transferRepository;
-    @Mock
-    Logger logger;
     @Mock
     TransferValidator transferValidator;
     @InjectMocks

@@ -1,6 +1,5 @@
 package com.example.moneytransfer.service;
 
-import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.records.ConfirmOperationBody;
 import com.example.moneytransfer.repository.TransferRepository;
 import com.example.moneytransfer.validators.ConfirmOperationValidator;
@@ -17,8 +16,6 @@ public class ConfirmOperationTest {
     private ConfirmOperationValidator confirmOperationValidator;
     @Mock
     private TransferRepository transferRepository;
-    @Mock
-    private Logger logger;
     @InjectMocks
     private ConfirmOperationService confirmOperationService;
 

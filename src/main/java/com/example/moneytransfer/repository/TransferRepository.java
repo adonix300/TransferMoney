@@ -2,12 +2,12 @@ package com.example.moneytransfer.repository;
 
 import com.example.moneytransfer.api.TransferRepositoryApi;
 import com.example.moneytransfer.exception.ValidationException;
-import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.model.Transfer;
-import com.example.moneytransfer.records.TransferBody;
 import com.example.moneytransfer.model.TransferStatus;
+import com.example.moneytransfer.records.TransferBody;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,13 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class TransferRepository implements TransferRepositoryApi {
-    private final Logger logger;
-
-    @Autowired
-    public TransferRepository(Logger logger) {
-        this.logger = logger;
-    }
-
+    private static final Logger logger = LogManager.getLogger(TransferRepository.class);
     @Getter
     private static final ConcurrentMap<String, Transfer> transferMap = new ConcurrentHashMap<>();
     private AtomicInteger id = new AtomicInteger(0);
@@ -32,7 +26,7 @@ public class TransferRepository implements TransferRepositoryApi {
         Transfer transfer = new Transfer(transferBody, TransferStatus.PROCESSING);
         transferMap.put(currentId, transfer);
 
-        logger.log("ID " + id + ": " +
+        logger.info("ID " + id + ": " +
                 "cardFrom: Number: " + transferBody.cardFromNumber() + ", " +
                 "ValidTill: " + transferBody.cardFromValidTill() + ", " +
                 "CVV: " + transferBody.cardFromCVV() + ". " +
@@ -46,7 +40,7 @@ public class TransferRepository implements TransferRepositoryApi {
         Transfer transfer = transferMap.get(id);
         if (transfer != null) {
             transfer.setStatus(TransferStatus.SUCCESSFUL);
-            logger.log("ID " + id + ": " +
+            logger.info("ID " + id + ": " +
                     "New status: " + TransferStatus.SUCCESSFUL);
             return id;
         } else {
@@ -58,7 +52,7 @@ public class TransferRepository implements TransferRepositoryApi {
         Transfer transfer = transferMap.get(id);
         if (transfer != null) {
             transfer.setStatus(TransferStatus.FAILED);
-            logger.log("ID " + id + ": " +
+            logger.info("ID " + id + ": " +
                     "New status: " + TransferStatus.FAILED);
             return null;
         } else {

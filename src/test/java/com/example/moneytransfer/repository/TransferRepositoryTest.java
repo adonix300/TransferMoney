@@ -1,22 +1,17 @@
 package com.example.moneytransfer.repository;
 
-import com.example.moneytransfer.logger.Logger;
+import com.example.moneytransfer.model.TransferStatus;
 import com.example.moneytransfer.records.TransferAmount;
 import com.example.moneytransfer.records.TransferBody;
-import com.example.moneytransfer.model.TransferStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 class TransferRepositoryTest {
-    @Mock
-    Logger logger;
     @InjectMocks
     TransferRepository transferRepository;
 
@@ -33,7 +28,7 @@ class TransferRepositoryTest {
                 "12/25",
                 "123",
                 "55556666777788889999",
-                new TransferAmount(12345,"RUR"));
+                new TransferAmount(12345, "RUR"));
         int sizeBefore = TransferRepository.getTransferMap().size();
 
         String id = transferRepository.addTransfer(transferBody);
@@ -41,14 +36,6 @@ class TransferRepositoryTest {
 
         int sizeAfter = TransferRepository.getTransferMap().size();
         assertEquals(sizeBefore + 1, sizeAfter);
-
-        verify(logger).log("ID " + id + ": " +
-                "cardFrom: Number: " + transferBody.cardFromNumber() + ", " +
-                "ValidTill: " + transferBody.cardFromValidTill() + ", " +
-                "CVV: " + transferBody.cardFromCVV() + ". " +
-                "cardTo: Number: " + transferBody.cardToNumber() + ". " +
-                "Amount: " + transferBody.amount() + ". " +
-                "Status: " + TransferStatus.PROCESSING + ".");
     }
 
     @Test
@@ -58,12 +45,10 @@ class TransferRepositoryTest {
                 "12/25",
                 "123",
                 "55556666777788889999",
-                new TransferAmount(12345,"RUR"));
+                new TransferAmount(12345, "RUR"));
         String id = transferRepository.addTransfer(transferBody);
         transferRepository.confirmOperation(id);
         assertEquals(TransferStatus.SUCCESSFUL, TransferRepository.getTransferMap().get(id).getStatus());
-
-        verify(logger).log("ID " + id + ": " + "New status: " + TransferStatus.SUCCESSFUL);
     }
 
     @Test
@@ -73,11 +58,9 @@ class TransferRepositoryTest {
                 "12/25",
                 "123",
                 "55556666777788889999",
-                new TransferAmount(12345,"RUR"));
+                new TransferAmount(12345, "RUR"));
         String id = transferRepository.addTransfer(transferBody);
         transferRepository.confirmOperationFailed(id);
         assertEquals(TransferStatus.FAILED, TransferRepository.getTransferMap().get(id).getStatus());
-
-        verify(logger).log("ID " + id + ": " + "New status: " + TransferStatus.FAILED);
     }
 }

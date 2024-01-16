@@ -1,7 +1,6 @@
 package com.example.moneytransfer.validators;
 
 import com.example.moneytransfer.exception.ValidationException;
-import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.records.TransferAmount;
 import com.example.moneytransfer.records.TransferBody;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,21 +8,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class TransferValidatorTest {
-    @Mock
-    Logger logger;
     @InjectMocks
     TransferValidator transferValidator;
+
     @BeforeEach
     void setUp() {
         initMocks(this);
@@ -63,7 +57,6 @@ public class TransferValidatorTest {
     @MethodSource("invalidTransferBodyData")
     void validationTransferBody_InvalidData_ShouldLogError(TransferBody transferBody) {
         assertThrows(ValidationException.class, () -> transferValidator.validateTransferBody(transferBody));
-        verify(logger, times(1)).log(anyString());
     }
 
 }
