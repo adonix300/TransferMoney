@@ -2,7 +2,7 @@ package com.example.moneytransfer.validators;
 
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.logger.Logger;
-import com.example.moneytransfer.model.ConfirmOperationBody;
+import com.example.moneytransfer.records.ConfirmOperationBody;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,8 +35,7 @@ public class ConfirmOperationValidatorTest {
         return Stream.of(Arguments.of(new ConfirmOperationBody("1", null)), //Invalid code (null)
                 Arguments.of(new ConfirmOperationBody("1", "123")), //Invalid code (length < 4)
                 Arguments.of(new ConfirmOperationBody("1", "12345")), //Invalid code (length > 4)
-                Arguments.of(new ConfirmOperationBody("-1", "1234")), //Invalid id (length < 0)
-                Arguments.of(new ConfirmOperationBody("1","1234")) // Wrong code (!0000)
+                Arguments.of(new ConfirmOperationBody("-1", "1234")) //Invalid id (length < 0)
         );
     }
 

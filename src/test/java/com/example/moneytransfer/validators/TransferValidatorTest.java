@@ -2,8 +2,8 @@ package com.example.moneytransfer.validators;
 
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.logger.Logger;
-import com.example.moneytransfer.model.TransferAmount;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.TransferAmount;
+import com.example.moneytransfer.records.TransferBody;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

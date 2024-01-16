@@ -1,7 +1,7 @@
 package com.example.moneytransfer.handlers;
 
 import com.example.moneytransfer.exception.ValidationException;
-import com.example.moneytransfer.model.ErrorResponse;
+import com.example.moneytransfer.records.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

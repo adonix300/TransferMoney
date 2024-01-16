@@ -2,7 +2,7 @@ package com.example.moneytransfer.validators;
 
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.logger.Logger;
-import com.example.moneytransfer.model.ConfirmOperationBody;
+import com.example.moneytransfer.records.ConfirmOperationBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ public class ConfirmOperationValidator {
     }
 
     public void validate(ConfirmOperationBody body) {
-        if (body.getCode() == null || body.getCode().length() != 4) {
-            loggerAndValidation("Invalid Code: " + body.getCode());
+        if (body.code() == null || body.code().length() != 4) {
+            loggerAndValidation("Invalid Code: " + body.code());
         }
-        if (body.getOperationId() == null || !isNumeric(body.getOperationId()) || Integer.parseInt(body.getOperationId()) < 0) {
-            loggerAndValidation("Invalid id: " + body.getOperationId());
+        if (body.operationId() == null || !isNumeric(body.operationId()) || Integer.parseInt(body.operationId()) < 0) {
+            loggerAndValidation("Invalid id: " + body.operationId());
         }
     }
 

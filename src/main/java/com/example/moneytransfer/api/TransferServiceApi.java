@@ -1,7 +1,6 @@
 package com.example.moneytransfer.api;
 
-import com.example.moneytransfer.model.ConfirmOperationBody;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.TransferBody;
 
 public interface TransferServiceApi {
     String addTransfer(TransferBody transferBody);

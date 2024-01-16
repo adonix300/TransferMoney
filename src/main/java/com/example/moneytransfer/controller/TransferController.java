@@ -2,9 +2,9 @@ package com.example.moneytransfer.controller;
 
 import com.example.moneytransfer.api.TransferControllerApi;
 import com.example.moneytransfer.exception.ValidationException;
-import com.example.moneytransfer.model.ConfirmOperationBody;
-import com.example.moneytransfer.model.ConfirmOperationResponse;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.ConfirmOperationBody;
+import com.example.moneytransfer.records.ConfirmOperationResponse;
+import com.example.moneytransfer.records.TransferBody;
 import com.example.moneytransfer.service.ConfirmOperationService;
 import com.example.moneytransfer.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;

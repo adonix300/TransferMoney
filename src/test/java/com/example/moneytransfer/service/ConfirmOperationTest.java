@@ -1,7 +1,7 @@
 package com.example.moneytransfer.service;
 
 import com.example.moneytransfer.logger.Logger;
-import com.example.moneytransfer.model.ConfirmOperationBody;
+import com.example.moneytransfer.records.ConfirmOperationBody;
 import com.example.moneytransfer.repository.TransferRepository;
 import com.example.moneytransfer.validators.ConfirmOperationValidator;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +36,7 @@ public class ConfirmOperationTest {
         confirmOperationService.confirmOperation(body);
 
         verify(confirmOperationValidator, times(1)).validate(body);
-        verify(transferRepository, times(1)).confirmOperation(body.getOperationId());
+        verify(transferRepository, times(1)).confirmOperation(body.operationId());
     }
 
     @Test
@@ -46,6 +46,6 @@ public class ConfirmOperationTest {
         confirmOperationService.confirmOperation(body);
 
         verify(confirmOperationValidator, times(1)).validate(body);
-        verify(transferRepository, times(1)).confirmOperationFailed(body.getOperationId());
+        verify(transferRepository, times(1)).confirmOperationFailed(body.operationId());
     }
 }

@@ -1,8 +1,7 @@
 package com.example.moneytransfer.service;
 
 import com.example.moneytransfer.api.TransferServiceApi;
-import com.example.moneytransfer.logger.Logger;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.TransferBody;
 import com.example.moneytransfer.repository.TransferRepository;
 import com.example.moneytransfer.validators.TransferValidator;
 import org.springframework.beans.factory.annotation.Autowired;

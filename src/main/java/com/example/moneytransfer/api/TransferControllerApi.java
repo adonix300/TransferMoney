@@ -1,9 +1,9 @@
 package com.example.moneytransfer.api;
 
 
-import com.example.moneytransfer.model.ConfirmOperationBody;
-import com.example.moneytransfer.model.ConfirmOperationResponse;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.ConfirmOperationBody;
+import com.example.moneytransfer.records.ConfirmOperationResponse;
+import com.example.moneytransfer.records.TransferBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;

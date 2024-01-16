@@ -4,7 +4,7 @@ import com.example.moneytransfer.api.TransferRepositoryApi;
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.logger.Logger;
 import com.example.moneytransfer.model.Transfer;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.TransferBody;
 import com.example.moneytransfer.model.TransferStatus;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,12 @@ public class TransferRepository implements TransferRepositoryApi {
         Transfer transfer = new Transfer(transferBody, TransferStatus.PROCESSING);
         transferMap.put(currentId, transfer);
 
-        logger.log("ID " + currentId + ": " +
-                "cardFrom: Number: " + transferBody.getCardFromNumber() + ", " +
-                "ValidTill: " + transferBody.getCardFromValidTill() + ", " +
-                "CVV: " + transferBody.getCardFromCVV() + ". " +
-                "cardTo: Number: " + transferBody.getCardToNumber() + ". " +
-                "Amount: " + transferBody.getAmount() + ". " +
+        logger.log("ID " + id + ": " +
+                "cardFrom: Number: " + transferBody.cardFromNumber() + ", " +
+                "ValidTill: " + transferBody.cardFromValidTill() + ", " +
+                "CVV: " + transferBody.cardFromCVV() + ". " +
+                "cardTo: Number: " + transferBody.cardToNumber() + ". " +
+                "Amount: " + transferBody.amount() + ". " +
                 "Status: " + TransferStatus.PROCESSING + ".");
         return currentId;
     }

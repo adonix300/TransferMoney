@@ -2,7 +2,7 @@ package com.example.moneytransfer.validators;
 
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.logger.Logger;
-import com.example.moneytransfer.model.TransferBody;
+import com.example.moneytransfer.records.TransferBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +15,25 @@ public class TransferValidator {
     }
 
     public void validateTransferBody(TransferBody transferBody) {
-        if (transferBody.getCardFromCVV() == null || transferBody.getCardFromCVV().length() != 3)
-            loggerAndValidation("Invalid CVV: " + transferBody.getCardFromCVV());
+        if (transferBody.cardFromCVV() == null || transferBody.cardFromCVV().length() != 3)
+            loggerAndValidation("Invalid CVV: " + transferBody.cardFromCVV());
 
-        if (transferBody.getCardFromNumber() == null || transferBody.getCardFromNumber().length() != 16)
-            loggerAndValidation("Invalid CardFromNumber: " + transferBody.getCardFromNumber());
+        if (transferBody.cardFromNumber() == null || transferBody.cardFromNumber().length() != 16)
+            loggerAndValidation("Invalid CardFromNumber: " + transferBody.cardFromNumber());
 
-        if (transferBody.getCardToNumber() == null || transferBody.getCardToNumber().length() != 16)
-            loggerAndValidation("Invalid CardToNumber: " + transferBody.getCardToNumber());
+        if (transferBody.cardToNumber() == null || transferBody.cardToNumber().length() != 16)
+            loggerAndValidation("Invalid CardToNumber: " + transferBody.cardToNumber());
 
-        if (transferBody.getCardFromValidTill() == null || transferBody.getCardFromValidTill().length() != 5)
-            loggerAndValidation("Invalid CardFromValidTill: " + transferBody.getCardFromValidTill());
+        if (transferBody.cardFromValidTill() == null || transferBody.cardFromValidTill().length() != 5)
+            loggerAndValidation("Invalid CardFromValidTill: " + transferBody.cardFromValidTill());
 
-        if (transferBody.getAmount() == null)
+        if (transferBody.amount() == null)
             loggerAndValidation("Invalid Amount");
 
-        if (transferBody.getAmount().getValue() == null)
+        if (transferBody.amount().value() == null)
             loggerAndValidation("Invalid Amount value: null");
 
-        if (transferBody.getAmount().getCurrency() == null)
+        if (transferBody.amount().currency() == null)
             loggerAndValidation("Invalid Amount currency");
 
     }
