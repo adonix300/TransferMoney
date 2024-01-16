@@ -1,5 +1,6 @@
 package com.example.moneytransfer.service;
 
+import com.example.moneytransfer.api.TransferRepositoryApi;
 import com.example.moneytransfer.api.TransferServiceApi;
 import com.example.moneytransfer.records.TransferBody;
 import com.example.moneytransfer.repository.TransferRepository;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TransferService implements TransferServiceApi {
-    private final TransferRepository transferRepository;
+    private final TransferRepositoryApi transferRepository;
     private final TransferValidator transferValidator;
 
     @Autowired

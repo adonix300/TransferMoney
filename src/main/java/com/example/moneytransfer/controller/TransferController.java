@@ -1,6 +1,8 @@
 package com.example.moneytransfer.controller;
 
+import com.example.moneytransfer.api.ConfirmOperationServiceApi;
 import com.example.moneytransfer.api.TransferControllerApi;
+import com.example.moneytransfer.api.TransferServiceApi;
 import com.example.moneytransfer.exception.ValidationException;
 import com.example.moneytransfer.records.ConfirmOperationBody;
 import com.example.moneytransfer.records.ConfirmOperationResponse;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TransferController implements TransferControllerApi {
-    private final TransferService transferService;
-    private final ConfirmOperationService confirmOperationService;
+    private final TransferServiceApi transferService;
+    private final ConfirmOperationServiceApi confirmOperationService;
 
     @Autowired
     public TransferController(TransferService transferService, ConfirmOperationService confirmOperationService) {
